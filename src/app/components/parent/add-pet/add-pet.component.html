@@ -1,0 +1,125 @@
+<div class="add-pet-dialogbox">
+  <mat-card class="example-card">
+    <mat-card-header>
+      <mat-card-title>Add/Edit Pet Details</mat-card-title>
+      <mat-card-subtitle>TOPY Management</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <form [formGroup]="addPetForm">
+        <div>
+          <mat-form-field>
+            <mat-label>Name</mat-label>
+            <input
+              matInput
+              placeholder="Pet Name"
+              value=""
+              formControlName="name"
+              name="name"
+            />
+          </mat-form-field>
+          <br />
+          <span
+            style="color: red"
+            *ngIf="addPetForm.get('name') && addPetForm.get('name')?.errors?.['required'] && addPetForm.get('name')?.touched"
+            >Pet Name is a required feild
+          </span>
+        </div>
+        <div class="add-child-form-element">
+          <mat-form-field appearance="fill">
+            <mat-label>Gender</mat-label>
+            <mat-select formControlName="gender">
+              <mat-option
+                *ngFor="let gender of genders"
+                [value]="gender.value"
+                >{{ gender.name }}</mat-option
+              >
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field>
+            <mat-label>Pet animal type</mat-label>
+            <input
+              matInput
+              placeholder="dog, cat..."
+              value=""
+              formControlName="pet_animal_type"
+              name="pet_animal_type"
+            />
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field>
+            <mat-label>Breed</mat-label>
+            <input
+              matInput
+              placeholder="german shephard, pug..."
+              value=""
+              formControlName="pet_breed"
+              name="pet_breed"
+            />
+          </mat-form-field>
+        </div>
+        <div class="datePicker" class="add-child-form-element">
+          <mat-form-field>
+            <input
+              matInput
+              [matDatepicker]="picker"
+              formControlName="birthday"
+              placeholder="Date of birth"
+            />
+            <mat-datepicker-toggle
+              matIconSuffix
+              [for]="picker"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+          <br />
+        </div>
+        <div>
+          <mat-form-field>
+            <mat-label>Introduction Message</mat-label>
+            <textarea
+              matInput
+              placeholder="I am ..."
+              formControlName="about_me"
+            ></textarea>
+          </mat-form-field>
+        </div>
+        <div class="add-child-form-element">
+          <mat-form-field appearance="fill">
+            <mat-label>Activity</mat-label>
+            <mat-select formControlName="activity_pref" multiple>
+              <mat-option
+                *ngFor="let activity of activities"
+                [value]="activity.activity_id"
+                >{{ activity.name }}</mat-option
+              >
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field>
+            <mat-label>Emergency Contact</mat-label>
+            <input
+              matInput
+              placeholder="+1-XXX-XXX-XXXX"
+              value=""
+              formControlName="emergency_contact"
+              name="emergency_contact"
+            />
+          </mat-form-field>
+          <br />
+          <span
+            style="color: red"
+            *ngIf="addPetForm.get('emergencyContact') && addPetForm.get('emergencyContact')?.errors?.['required'] && addPetForm.get('emergencyContact')?.touched"
+            >Emergency Contact is a required feild
+          </span>
+        </div>
+        <div>
+          <button mat-button (click)="addPet()">Submit</button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

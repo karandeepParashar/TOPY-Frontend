@@ -1,0 +1,216 @@
+<img src="../../../../assets/img/old-and-young.gif" alt="" />
+<h1 style="text-align: -webkit-center"><b>Welcome to TOPY Management</b></h1>
+<div class="login-card">
+  <mat-card class="example-card">
+    <mat-card-header>
+      <mat-card-title>Login/Register</mat-card-title>
+      <mat-card-subtitle>TOPY Management</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <mat-tab-group dynamicHeight>
+        <mat-tab label="Login">
+          <form class="login-form" [formGroup]="loginForm" (ngSubmit)="login()">
+            <br />
+            <div>
+              <mat-form-field appearance="fill">
+                <mat-label>User Type</mat-label>
+                <mat-select
+                  matInput
+                  matNativeControl
+                  required
+                  formControlName="user_type"
+                >
+                  <mat-option value="2">Parent</mat-option>
+                  <mat-option value="1">Senior-Citizen</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <mat-form-field class="example-full-width">
+              <mat-label>Username</mat-label>
+              <input
+                matInput
+                placeholder="Username or email"
+                value=""
+                formControlName="email"
+                name="email"
+              />
+            </mat-form-field>
+            <br />
+            <span
+              style="color: red"
+              *ngIf="loginForm.get('email') && loginForm.get('email')?.errors?.['required'] && loginForm.get('email')?.touched"
+              >Enter username
+            </span>
+            <span
+              style="color: red"
+              *ngIf="loginForm.get('email') && loginForm.get('email')?.errors?.['email'] && loginForm.get('email')?.touched"
+              >Invalid username
+            </span>
+            <mat-form-field class="example-full-width">
+              <mat-label>Password</mat-label>
+              <input
+                matInput
+                type="password"
+                placeholder="Password"
+                value=""
+                formControlName="password"
+                name="password"
+              />
+            </mat-form-field>
+            <br />
+            <span
+              style="color: red"
+              *ngIf="loginForm.get('password') && loginForm.get('password')?.errors?.['required'] && loginForm.get('password')?.touched"
+            >
+              This field is not valid
+            </span>
+            <mat-card-actions>
+              <button
+                mat-raised-button
+                color="primary"
+                [disabled]="loginForm.invalid"
+              >
+                Login
+              </button>
+            </mat-card-actions>
+          </form>
+        </mat-tab>
+        <mat-tab label="Register">
+          <form
+            class="login-form"
+            [formGroup]="registerForm"
+            (ngSubmit)="register()"
+          >
+            <br />
+            <div>
+              <mat-form-field appearance="fill">
+                <mat-label>User Type</mat-label>
+                <mat-select
+                  matInput
+                  matNativeControl
+                  required
+                  formControlName="user_type"
+                >
+                  <mat-option value="2">Parent</mat-option>
+                  <mat-option value="1">Senior-Citizen</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div>
+              <mat-form-field class="example-full-width">
+                <mat-label>Email</mat-label>
+                <input
+                  matInput
+                  placeholder="Email"
+                  value=""
+                  formControlName="email"
+                  name="email"
+                />
+              </mat-form-field>
+              <br />
+              <span
+                style="color: red"
+                *ngIf="registerForm.get('email') && registerForm.get('email')?.errors?.['required'] && registerForm.get('email')?.touched"
+                >Email is a required feild
+              </span>
+              <span
+                style="color: red"
+                *ngIf="registerForm.get('email') && registerForm.get('email')?.errors?.['email'] && registerForm.get('email')?.touched"
+                >Please enter a valid email address
+              </span>
+            </div>
+            <div>
+              <mat-form-field class="example-full-width">
+                <mat-label>Name</mat-label>
+                <input
+                  matInput
+                  placeholder="Name"
+                  value=""
+                  formControlName="name"
+                  name="name"
+                />
+              </mat-form-field>
+            </div>
+            <div>
+              <mat-form-field class="example-full-width">
+                <mat-label>Password</mat-label>
+                <input
+                  matInput
+                  type="password"
+                  placeholder="Password"
+                  value=""
+                  formControlName="password"
+                  name="password"
+                />
+              </mat-form-field>
+              <br />
+              <span
+                style="color: red"
+                *ngIf="registerForm.get('password') && registerForm.get('password')?.errors?.['required'] && registerForm.get('password')?.touched"
+              >
+                Password is a required feild
+              </span>
+              <span
+                style="color: red"
+                *ngIf="
+                  registerForm.get('password') &&
+                  registerForm.get('password')?.hasError('minlength') &&
+                  registerForm.get('password')?.touched
+                "
+              >
+                Minimum length for password is 8 characters
+              </span>
+            </div>
+            <div>
+              <mat-form-field class="example-full-width">
+                <mat-label>Confirm Password</mat-label>
+                <input
+                  matInput
+                  type="password"
+                  placeholder="Password"
+                  value=""
+                  formControlName="confirmPassword"
+                  name="confirmPassword"
+                />
+              </mat-form-field>
+              <br />
+              <span
+                style="color: red"
+                *ngIf="registerForm.get('confirmPassword') && registerForm.get('confirmPassword')?.errors?.['required'] && registerForm.get('confirmPassword')?.touched"
+              >
+                Confirm Password is a required feild
+              </span>
+              <span
+                style="color: red"
+                *ngIf="registerForm.get('confirmPassword')?.touched && registerForm.errors?.['mismatchPassword']"
+              >
+                Password and confirm password does not match
+              </span>
+            </div>
+            <div>
+              <mat-form-field class="example-full-width">
+                <mat-label>Zip Code</mat-label>
+                <input
+                  matInput
+                  placeholder="zip_code"
+                  value=""
+                  formControlName="zip_code"
+                  name="zip_code"
+                />
+              </mat-form-field>
+            </div>
+            <mat-card-actions>
+              <button
+                mat-raised-button
+                color="primary"
+                [disabled]="registerForm.invalid"
+              >
+                Register
+              </button>
+            </mat-card-actions>
+          </form>
+        </mat-tab>
+      </mat-tab-group>
+    </mat-card-content>
+  </mat-card>
+</div>

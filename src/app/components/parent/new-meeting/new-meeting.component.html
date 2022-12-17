@@ -1,0 +1,332 @@
+<app-parent-header></app-parent-header>
+<div class="main">
+  <mat-stepper headerPosition="bottom" #stepper>
+    <mat-step>
+      <button mat-raised-button (click)="openAddChildDialog()">
+        Add Child
+      </button>
+      <ng-template matStepLabel>Select Child information</ng-template>
+      <mat-grid-list cols="2" rowHeight="1.5:1" class="recommendation-grid">
+        <div
+          class="select-child-details-main"
+          *ngFor="let child of childrenList"
+        >
+          <mat-grid-tile>
+            <mat-card class="example-card">
+              <mat-card-header>
+                <mat-card-title>{{ child["name"] }}</mat-card-title>
+                <mat-card-subtitle>{{ child["gender"] }}</mat-card-subtitle>
+              </mat-card-header>
+              <mat-card-content>
+                <div *ngIf="child['gender'] == 'M'">
+                  <img src="../../../../assets/img/child_m.jpg" alt="" />
+                </div>
+                <div *ngIf="child['gender'] == 'F'">
+                  <img src="../../../../assets/img/child_f.jpg" alt="" />
+                </div>
+                <span> Birthday:{{ child["birthday"] }} </span>
+                <br />
+                <span>
+                  Activities:{{ " " + child["activity_pref"].join(", ") }}
+                </span>
+                <br />
+                <span> About me:{{ child["about_me"] }} </span>
+                <br />
+                <span>
+                  Emergency Contact:{{ child["emergency_contact"] }}
+                </span>
+              </mat-card-content>
+              <mat-card-action>
+                <div>
+                  <button
+                    mat-raised-button
+                    matStepperNext
+                    (click)="selectChild(child)"
+                  >
+                    Select
+                  </button>
+                  <button
+                    mat-raised-button
+                    (click)="deleteChild(child)"
+                    style="margin-left: 2em"
+                  >
+                    Delete
+                  </button>
+                </div>
+              </mat-card-action>
+            </mat-card></mat-grid-tile
+          >
+        </div>
+      </mat-grid-list>
+    </mat-step>
+    <mat-step optional>
+      <ng-template matStepLabel>Select Pet information</ng-template>
+      <button mat-raised-button (click)="openAddPetDialog()">Add Pet</button>
+      <br />
+      <br />
+      <mat-slide-toggle [(ngModel)]="includePet"
+        >Include Pet: {{ includePet }}</mat-slide-toggle
+      >
+      <div *ngIf="includePet">
+        <mat-grid-list cols="2" rowHeight="1.5:1" class="recommendation-grid">
+          <div class="select-child-details-main" *ngFor="let pet of petList">
+            <mat-grid-tile>
+              <mat-card class="example-card">
+                <mat-card-header>
+                  <mat-card-title>{{ pet["name"] }}</mat-card-title>
+                  <mat-card-subtitle>{{ pet["gender"] }}</mat-card-subtitle>
+                </mat-card-header>
+                <mat-card-content>
+                  <div *ngIf="pet['pet_animal_type'] == 'Cat'">
+                    <img src="../../../../assets/img/cat.jpg" alt="" />
+                  </div>
+                  <div *ngIf="pet['pet_animal_type'] == 'Dog'">
+                    <img src="../../../../assets/img/dog.jpg" alt="" />
+                  </div>
+                  <span> Animal Type: {{ pet["pet_animal_type"] }} </span>
+                  <br />
+                  <span> Breed: {{ pet["pet_breed"] }} </span>
+                  <br />
+                  <span> Birthday:{{ pet["birthday"] }} </span>
+                  <br />
+                  <span>
+                    Activities:{{ " " + pet["activity_pref"].join(", ") }}
+                  </span>
+                  <br />
+                  <span> About me:{{ pet["about_me"] }} </span>
+                  <br />
+                  <span>
+                    Emergency Contact:{{ pet["emergency_contact"] }}
+                  </span>
+                </mat-card-content>
+                <mat-card-action>
+                  <div>
+                    <button
+                      mat-raised-button
+                      matStepperNext
+                      (click)="selectPet(pet)"
+                    >
+                      Select
+                    </button>
+                    <button
+                      mat-raised-button
+                      (click)="deletePet(pet)"
+                      style="margin-left: 2em"
+                    >
+                      Delete
+                    </button>
+                  </div>
+                </mat-card-action>
+              </mat-card></mat-grid-tile
+            >
+          </div>
+        </mat-grid-list>
+      </div>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>Select Senior Citizen information</ng-template>
+      <mat-grid-list
+        cols="3"
+        rowHeight="1.5:1"
+        class="recommendation-grid-senior"
+      >
+        <h1>Recommendations</h1>
+        <div
+          class="select-child-details-main"
+          *ngFor="let displaySeniorCitizen of seniorCitizenList"
+        >
+          <mat-grid-tile>
+            <ng-template matStepLabel>Select Senior Citizen</ng-template>
+            <mat-card class="example-card">
+              <mat-card-header>
+                <mat-card-title>{{
+                  displaySeniorCitizen["name"]
+                }}</mat-card-title>
+                <mat-card-subtitle>{{
+                  displaySeniorCitizen["gender"]
+                }}</mat-card-subtitle>
+              </mat-card-header>
+              <mat-card-content>
+                <div *ngIf="displaySeniorCitizen['gender'] == 'M'">
+                  <img src="../../../../assets/img/old_m.jpg" alt="" />
+                </div>
+                <div *ngIf="displaySeniorCitizen['gender'] == 'F'">
+                  <img src="../../../../assets/img/old_f.jpg" alt="" />
+                </div>
+                <span>
+                  Activities:{{ displaySeniorCitizen["activity_pref"] }}
+                </span>
+                <br />
+                <span> Birth Date:{{ displaySeniorCitizen["birthday"] }} </span>
+                <br />
+                <span> About Me:{{ displaySeniorCitizen["about_me"] }} </span>
+                <br />
+                <span>
+                  Emergency Contact:{{
+                    displaySeniorCitizen["emergency_contact"]
+                  }}
+                </span>
+              </mat-card-content>
+              <mat-card-action>
+                <div>
+                  <button
+                    mat-raised-button
+                    color="primary"
+                    matStepperNext
+                    (click)="selectSeniorCitizen(displaySeniorCitizen)"
+                  >
+                    Select
+                  </button>
+                </div>
+              </mat-card-action>
+            </mat-card></mat-grid-tile
+          >
+        </div>
+      </mat-grid-list>
+      <br />
+      <mat-divider></mat-divider>
+      <br />
+      <h1>Senior Citizen List</h1>
+      <div class="all-senior-citizen-table">
+        <table
+          mat-table
+          [dataSource]="senior_citizen_list"
+          class="mat-elevation-z8"
+        >
+          <!-- Name Column -->
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef>Name</th>
+            <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="gender">
+            <th mat-header-cell *matHeaderCellDef>Gender</th>
+            <td mat-cell *matCellDef="let element">{{ element.gender }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="birthday">
+            <th mat-header-cell *matHeaderCellDef>Date of Birth</th>
+            <td mat-cell *matCellDef="let element">{{ element.birthday }}</td>
+          </ng-container>
+
+          <!-- activities Column -->
+          <ng-container matColumnDef="activities">
+            <th mat-header-cell *matHeaderCellDef>Activities</th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.activity_pref }}
+            </td>
+          </ng-container>
+
+          <!-- About Me Column -->
+          <ng-container matColumnDef="about_me">
+            <th mat-header-cell *matHeaderCellDef>About Me</th>
+            <td mat-cell *matCellDef="let element">
+              <span class="truncate-cell">
+                {{ element.about_me }}
+              </span>
+            </td>
+          </ng-container>
+
+          <!-- emergencyContact Column -->
+          <ng-container matColumnDef="emergency_contact">
+            <th mat-header-cell *matHeaderCellDef>emergency_contact</th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.emergency_contact }}
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr
+            mat-row
+            *matRowDef="let row; columns: displayedColumns"
+            (click)="selectSeniorCitizen(row)"
+            [ngClass]="{ highlight: selectedSeniorCitizen == row }"
+          ></tr>
+        </table>
+      </div>
+      <br />
+      <mat-divider></mat-divider>
+      <div>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>Send Request</ng-template>
+      <div class="review-request-main-div">
+        <mat-card class="example-card"
+          >`
+          <mat-card-header>
+            <mat-card-title></mat-card-title>
+            <mat-card-subtitle></mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content>
+            <form [formGroup]="meetingForm">
+              <div class="datePicker" class="add-child-form-element">
+                <mat-form-field>
+                  <input
+                    matInput
+                    [matDatepicker]="picker"
+                    formControlName="date"
+                    placeholder="Meeting Date"
+                  />
+                  <mat-datepicker-toggle
+                    matIconSuffix
+                    [for]="picker"
+                  ></mat-datepicker-toggle>
+                  <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+                <br />
+                <span
+                  style="color: red"
+                  *ngIf="meetingForm.get('date')?.touched && meetingForm.get('date')?.errors?.['required']"
+                >
+                  Date is a required field
+                </span>
+              </div>
+              <div>
+                <mat-form-field>
+                  <mat-label>Time</mat-label>
+                  <input
+                    matInput
+                    placeholder="HH:MM:SS"
+                    value=""
+                    formControlName="time"
+                    name="time"
+                  />
+                </mat-form-field>
+                <br />
+                <span
+                  style="color: red"
+                  *ngIf="meetingForm.get('time') && meetingForm.get('time')?.errors?.['required'] && meetingForm.get('time')?.touched"
+                  >Time is a required feild
+                </span>
+              </div>
+              <div class="add-child-form-element">
+                <mat-form-field appearance="fill">
+                  <mat-label>Location</mat-label>
+                  <mat-select formControlName="location">
+                    <mat-option
+                      *ngFor="let location of topy_locations"
+                      [value]="location.station_id"
+                      >{{ location.station_name }}</mat-option
+                    >
+                  </mat-select>
+                </mat-form-field>
+              </div>
+            </form>
+            Thanks for filling up the form. Come back soon.</mat-card-content
+          >
+          <mat-card-actions
+            ><button mat-raised-button (click)="sendRequest()">
+              Send Request
+            </button></mat-card-actions
+          >
+        </mat-card>
+      </div>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button (click)="stepper.reset()">Reset</button>
+      </div>
+    </mat-step>
+  </mat-stepper>
+</div>

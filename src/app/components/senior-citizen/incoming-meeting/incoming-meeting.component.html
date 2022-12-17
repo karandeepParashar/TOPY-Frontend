@@ -1,0 +1,166 @@
+<senior-citizen-header></senior-citizen-header>
+<mat-grid-list cols="1" rowHeight="2:1" class="recommendation-grid">
+  <div
+    class="select-child-details-main"
+    *ngFor="let request of incomingRequests"
+  >
+    <mat-grid-tile>
+      <mat-card class="example-card">
+        <mat-card-header>
+          <mat-card-title
+            >Meeting Request: {{ request["data"]["match_id"] }}</mat-card-title
+          >
+          <mat-card-subtitle>{{ request["data"]["status"] }}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          <div class="image-requests">
+            <div
+              *ngIf="
+                !request['pet_details'].hasOwnProperty('pet_id') &&
+                request['child_details']['gender'] == 'M'
+              "
+            >
+              <img
+                src="../../../../assets/img/child_m.jpg"
+                alt="No Pet and Male"
+              />
+            </div>
+            <div
+              *ngIf="
+                !request['pet_details'].hasOwnProperty('pet_id') &&
+                request['child_details']['gender'] == 'F'
+              "
+            >
+              <img
+                src="../../../../assets/img/child_f.jpg"
+                alt="No Pet and Female"
+              />
+            </div>
+            <div
+              *ngIf="
+                request['pet_details'].hasOwnProperty('pet_id') &&
+                request['child_details']['gender'] == 'M' &&
+                request['pet_details']['pet_animal_type'] == 'Cat'
+              "
+            >
+              <img
+                src="../../../../assets/img/child_m_cat.jpg"
+                alt="Cat Pet and Male"
+              />
+            </div>
+            <div
+              *ngIf="
+                request['pet_details'].hasOwnProperty('pet_id') &&
+                request['child_details']['gender'] == 'F' &&
+                request['pet_details']['pet_animal_type'] == 'Cat'
+              "
+            >
+              <img
+                src="../../../../assets/img/child_f_cat.jpg"
+                alt="Cat Pet and Female"
+              />
+            </div>
+            <div
+              *ngIf="
+                request['pet_details'].hasOwnProperty('pet_id') &&
+                request['child_details']['gender'] == 'M' &&
+                request['pet_details']['pet_animal_type'] == 'Dog'
+              "
+            >
+              <img
+                src="../../../../assets/img/child_m_dog.jpg"
+                alt="Dog Pet and Male"
+              />
+            </div>
+            <div
+              *ngIf="
+                request['pet_details'].hasOwnProperty('pet_id') &&
+                request['child_details']['gender'] == 'F' &&
+                request['pet_details']['pet_animal_type'] == 'Dog'
+              "
+            >
+              <img
+                src="../../../../assets/img/child_f_dog.jpg"
+                alt="Dog Pet and Female"
+              />
+            </div>
+          </div>
+
+          <div class="meeting-details">
+            <b>Date: </b> {{ request["data"]["date"] }}
+            <br />
+            <b>Time: </b> {{ request["data"]["time"] }}
+            <br />
+            <b>Location: </b> TOPY Station
+            {{ request["data"]["topy_location"] }}
+          </div>
+          <div class="child-details">
+            <br />
+            <b>CHILD DETAILS</b>
+            <br />
+            <span><b>Name:</b> {{ request["child_details"]["name"] }} </span>
+            <br />
+            <span><b>Gender:</b> {{ request["child_details"]["gender"] }}</span>
+            <br />
+            <span
+              ><b>About Me:</b> {{ request["child_details"]["about_me"] }}</span
+            >
+            <br />
+
+            <span
+              ><b>Activities:</b>
+              {{ request["child_details"]["activity_pref"].join(" ,") }}</span
+            >
+            <br />
+
+            <span
+              ><b>Emergency Contact:</b>
+              {{ request["child_details"]["emergency_contact"] }}</span
+            >
+          </div>
+          <div
+            *ngIf="request['pet_details'].hasOwnProperty('pet_id')"
+            class="pet-details"
+          >
+            <br />
+            <b>PET DETAILS</b>
+            <br />
+            <span><b>Name:</b> {{ request["pet_details"]["name"] }} </span>
+            <br />
+            <span><b>Gender:</b> {{ request["pet_details"]["gender"] }} </span>
+            <br />
+            <span
+              ><b>Animal Type:</b>
+              {{ request["pet_details"]["pet_animal_type"] }} ({{
+                request["pet_details"]["pet_breed"]
+              }})
+            </span>
+            <br />
+            <span
+              ><b>About Me:</b> {{ request["pet_details"]["about_me"] }}
+            </span>
+          </div>
+        </mat-card-content>
+        <mat-card-action>
+          <div class="card-buttons">
+            <button
+              mat-raised-button
+              color="primary"
+              (click)="updateRequest(request, 'Accepted')"
+            >
+              Accept
+            </button>
+            <button
+              mat-raised-button
+              color="warn"
+              (click)="updateRequest(request, 'Rejected')"
+              style="margin-left: 2em"
+            >
+              Reject
+            </button>
+          </div>
+        </mat-card-action>
+      </mat-card></mat-grid-tile
+    >
+  </div>
+</mat-grid-list>

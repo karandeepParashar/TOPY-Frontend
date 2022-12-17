@@ -1,0 +1,75 @@
+{
+    "register": [
+        {
+            "user-type": "Parent",
+            "email": "kdparashar16@gmail.com",
+            "name": "Karan Parashar",
+            "password": "123456789",
+            "confirmPassword": "123456789",
+            "id": 1,
+            "pet": {
+                "name": "",
+                "species": "",
+                "breed": "",
+                "size": "",
+                "about-me": "",
+                "activity": "",
+                "emergency-contact": "",
+                "address": "",
+                "zipcode": ""
+            }
+        },
+        {
+            "user-type": "Senior-Citizen",
+            "email": "karan5parashar5@gmail.com",
+            "name": "Karandeep Parashar",
+            "password": "123456789",
+            "confirmPassword": "123456789",
+            "id": 2,
+            "details": {
+                "name": "",
+                "want-pet": "",
+                "about-me": "",
+                "emergency-contact": "",
+                "activity": "",
+                "address": "",
+                "zipcode": ""
+            }
+        }
+    ],
+    "meetings": [
+        {
+            "id": 1,
+            "sender-id": 1,
+            "receiver-id": 2,
+            "sender-name": "Karan Parashar",
+            "date": "16-11-1997",
+            "time": "02:00 PM",
+            "location": "TOPY Station 2",
+            "message": "Hi, would love to set up a meeting"
+        },
+        {
+            "id": 2,
+            "sender-id": 1,
+            "receiver-id": 2,
+            "sender-name": "Karan Parashar",
+            "date": "16-11-1997",
+            "time": "02:00 PM",
+            "location": "TOPY Station 2",
+            "message": "Hi, would love to set up a meeting"
+        }
+    ],
+    "child": [
+        {
+            "id": 1,
+            "name": "",
+            "date-of-birth": "",
+            "about-me": "",
+            "activity": "",
+            "location": "",
+            "emergency-contact": "",
+            "address": "",
+            "zipcode": ""
+        }
+    ]
+}

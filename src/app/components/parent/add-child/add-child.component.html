@@ -1,0 +1,110 @@
+<div class="add-child-dialogbox">
+  <mat-card
+    ><mat-card-header>
+      <mat-card-title>Add/Edit Child Details</mat-card-title>
+      <mat-card-subtitle>TOPY Management</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <form [formGroup]="addChildForm">
+        <div>
+          <mat-form-field>
+            <mat-label>Name</mat-label>
+            <input
+              matInput
+              placeholder="First Name Last Name"
+              value=""
+              formControlName="name"
+              name="name"
+            />
+          </mat-form-field>
+          <br />
+          <span
+            style="color: red"
+            *ngIf="addChildForm.get('name') && addChildForm.get('name')?.errors?.['required'] && addChildForm.get('name')?.touched"
+            >Email is a required feild
+          </span>
+        </div>
+        <div class="add-child-form-element">
+          <mat-form-field appearance="fill">
+            <mat-label>Gender</mat-label>
+            <mat-select formControlName="gender">
+              <mat-option
+                *ngFor="let gender of genders"
+                [value]="gender.value"
+                >{{ gender.name }}</mat-option
+              >
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="datePicker" class="add-child-form-element">
+          <mat-form-field>
+            <input
+              matInput
+              [matDatepicker]="picker"
+              formControlName="birthday"
+              placeholder="Date of birth"
+            />
+            <mat-datepicker-toggle
+              matIconSuffix
+              [for]="picker"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+          <br />
+          <span
+            style="color: red"
+            *ngIf="addChildForm.get('dateOfBirth')?.touched && addChildForm.get('dateOfBirth')?.errors?.['required']"
+          >
+            Date of birth is a required field
+          </span>
+        </div>
+        <div class="add-child-form-element">
+          <mat-form-field>
+            <mat-label>Introduction Message</mat-label>
+            <textarea
+              matInput
+              placeholder="I am ..."
+              formControlName="about_me"
+            ></textarea>
+          </mat-form-field>
+        </div>
+        <div class="add-child-form-element">
+          <mat-form-field appearance="fill">
+            <mat-label>Activity</mat-label>
+            <mat-select formControlName="activity_pref" multiple>
+              <mat-option
+                *ngFor="let activity of activities"
+                [value]="activity.activity_id"
+                >{{ activity.name }}</mat-option
+              >
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="add-child-form-element">
+          <mat-form-field>
+            <mat-label>Emergency Contact</mat-label>
+            <input
+              matInput
+              placeholder="+1-XXX-XXX-XXXX"
+              value=""
+              formControlName="emergency_contact"
+              name="emergency_contact"
+            />
+          </mat-form-field>
+          <br />
+          <span
+            style="color: red"
+            *ngIf="addChildForm.get('emergencyContact') && addChildForm.get('emergencyContact')?.errors?.['required'] && addChildForm.get('emergencyContact')?.touched"
+            >Emergency Contact is a required feild
+          </span>
+        </div>
+        <mat-divider></mat-divider>
+      </form>
+    </mat-card-content>
+    <mat-card-actions
+      ><button mat-raised-button ng-submit (click)="addChild()">
+        Add Child
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div>

@@ -1,0 +1,41 @@
+Project-Plan
+
+login
+register
+parent/pet-owner
+    dashboard
+    new-meeting
+    incoming-meeting
+senior-citizen
+    dashboard
+    new-meeting
+    incoming-meeting
+
+1. Navbar and Incoming Request
+2. Dashboard for both
+3. Remaining for senior-citizen
+4. Merge
+5. Bonusy
+
+backendLoginUrl: string = 'http://127.0.0.1:8000/login/';
+  backendRegisterUrl: string = 'http://127.0.0.1:8000/add-user/';
+
+  UserDetailsUrl: string = 'http://127.0.0.1:8000/user-details/';
+  AddSeniorCitizenUrl: string =
+    'http://127.0.0.1:8000/add-senior-citizen/';
+  SeniorCitizenDetailsUrl: string =
+    'http://127.0.0.1:8000/senior-citizen-details/';
+  GetAllSeniorUrl: string =
+    'http://127.0.0.1:8000/get-all-senior-citizens/';
+  AddChildUrl: string = 'http://127.0.0.1:8000/add-child/';
+  ChildDetailsUrl: string = 'http://127.0.0.1:8000/child-details/';
+  GetAllChildrenUrl: string = 'http://127.0.0.1:8000/get-all-children/';
+  AddPetUrl: string = 'http://127.0.0.1:8000/add-pet/';
+  PetDetailsrUrl: string = 'http://127.0.0.1:8000/pet-details/';
+  GetAllPetsUrl: string = 'http://127.0.0.1:8000/get-all-pets/';
+  GetTopystationsUrl: string = 'http://127.0.0.1:8000/get-topystations/';
+  GetMatchsIncomingUrl: string =
+    'http://127.0.0.1:8000/get-matchs-incoming/';
+  GetMatchsOutgoingUrl: string =
+    'http://127.0.0.1:8000/get-matchs-outgoing/';
+  AddMatchUrl: string = 'http://127.0.0.1:8000/add-match/';

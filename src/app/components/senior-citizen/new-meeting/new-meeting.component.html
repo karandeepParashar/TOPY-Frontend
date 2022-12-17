@@ -1,0 +1,332 @@
+<senior-citizen-header></senior-citizen-header>
+<div class="main">
+  <mat-stepper headerPosition="bottom" #stepper>
+    <mat-step>
+      <ng-template matStepLabel>Edit your information</ng-template>
+      <div class="edit-information-form">
+        <mat-card
+          ><mat-card-header>
+            <mat-card-title>Edit your information</mat-card-title>
+            <mat-card-subtitle>TOPY Management</mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content>
+            <form [formGroup]="senior_citizen_form">
+              <div>
+                <mat-form-field>
+                  <mat-label>Name</mat-label>
+                  <input
+                    matInput
+                    placeholder="First Name Last Name"
+                    value=""
+                    formControlName="name"
+                    name="name"
+                  />
+                </mat-form-field>
+                <br />
+              </div>
+              <div>
+                <mat-form-field appearance="fill">
+                  <mat-label>Gender</mat-label>
+                  <mat-select formControlName="gender">
+                    <mat-option
+                      *ngFor="let gender of genders"
+                      [value]="gender.value"
+                      >{{ gender.name }}</mat-option
+                    >
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="datePicker">
+                <mat-form-field>
+                  <input
+                    matInput
+                    [matDatepicker]="picker"
+                    formControlName="birthday"
+                    placeholder="Date of birth"
+                  />
+                  <mat-datepicker-toggle
+                    matIconSuffix
+                    [for]="picker"
+                  ></mat-datepicker-toggle>
+                  <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+                <br />
+              </div>
+              <div>
+                <mat-form-field>
+                  <mat-label>Introduction Message</mat-label>
+                  <textarea
+                    matInput
+                    placeholder="I am ..."
+                    formControlName="about_me"
+                  ></textarea>
+                </mat-form-field>
+              </div>
+              <div>
+                <mat-form-field appearance="fill">
+                  <mat-label>Activity</mat-label>
+                  <mat-select formControlName="activity_pref" multiple>
+                    <mat-option
+                      *ngFor="let activity of activities"
+                      [value]="activity.activity_id"
+                      >{{ activity.name }}</mat-option
+                    >
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div>
+                <mat-form-field>
+                  <mat-label>Emergency Contact</mat-label>
+                  <input
+                    matInput
+                    placeholder="+1-XXX-XXX-XXXX"
+                    value=""
+                    formControlName="emergency_contact"
+                    name="emergency_contact"
+                  />
+                </mat-form-field>
+              </div>
+              <mat-divider></mat-divider>
+            </form>
+          </mat-card-content>
+          <mat-card-actions
+            ><button
+              mat-raised-button
+              (click)="editSeniorCitizen()"
+              matStepperNext
+            >
+              Edit
+            </button>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>Select Child</ng-template>
+      <mat-grid-list cols="2" rowHeight="1.5:1" class="recommendation-grid">
+        <h1>Recommendations</h1>
+        <div
+          class="select-child-details-main"
+          *ngFor="let child of recommendationList"
+        >
+          <mat-grid-tile>
+            <mat-card class="example-card">
+              <mat-card-header>
+                <mat-card-title>{{ child["name"] }}</mat-card-title>
+                <mat-card-subtitle>{{ child["gender"] }}</mat-card-subtitle>
+              </mat-card-header>
+              <mat-card-content
+                ><div *ngIf="child['gender'] == 'M'">
+                  <img src="../../../../assets/img/child_m.jpg" alt="" />
+                </div>
+                <div *ngIf="child['gender'] == 'F'">
+                  <img src="../../../../assets/img/child_f.jpg" alt="" />
+                </div>
+                <span> Birthday:{{ child["birthday"] }} </span>
+                <br />
+                <span>
+                  Activities:{{ " " + child["activity_pref"].join(", ") }}
+                </span>
+                <br />
+                <span> About me:{{ child["about_me"] }} </span>
+                <br />
+                <span>
+                  Emergency Contact:{{ child["emergency_contact"] }}
+                </span>
+              </mat-card-content>
+              <mat-card-action>
+                <div>
+                  <button
+                    mat-raised-button
+                    matStepperNext
+                    (click)="selectChild(child)"
+                  >
+                    Select
+                  </button>
+                </div>
+              </mat-card-action>
+            </mat-card></mat-grid-tile
+          >
+        </div>
+      </mat-grid-list>
+      <mat-grid-list cols="2" rowHeight="1.5:1" class="recommendation-grid">
+        <h1>All children</h1>
+        <div
+          class="select-child-details-main"
+          *ngFor="let child of childrenList"
+        >
+          <mat-grid-tile>
+            <mat-card class="example-card">
+              <mat-card-header>
+                <mat-card-title>{{ child["name"] }}</mat-card-title>
+                <mat-card-subtitle>{{ child["gender"] }}</mat-card-subtitle>
+              </mat-card-header>
+              <mat-card-content
+                ><div *ngIf="child['gender'] == 'M'">
+                  <img src="../../../../assets/img/child_m.jpg" alt="" />
+                </div>
+                <div *ngIf="child['gender'] == 'F'">
+                  <img src="../../../../assets/img/child_f.jpg" alt="" />
+                </div>
+                <span> Birthday:{{ child["birthday"] }} </span>
+                <br />
+                <span>
+                  Activities:{{ " " + child["activity_pref"].join(", ") }}
+                </span>
+                <br />
+                <span> About me:{{ child["about_me"] }} </span>
+                <br />
+                <span>
+                  Emergency Contact:{{ child["emergency_contact"] }}
+                </span>
+              </mat-card-content>
+              <mat-card-action>
+                <div>
+                  <button
+                    mat-raised-button
+                    matStepperNext
+                    (click)="selectChild(child)"
+                  >
+                    Select
+                  </button>
+                </div>
+              </mat-card-action>
+            </mat-card></mat-grid-tile
+          >
+        </div>
+      </mat-grid-list>
+    </mat-step>
+    <mat-step optional>
+      <ng-template matStepLabel>Select Pet</ng-template>
+      <mat-slide-toggle [(ngModel)]="includePet"></mat-slide-toggle>Include Pet:
+      {{ includePet }}
+      <br />
+      <div *ngIf="includePet">
+        <mat-grid-list cols="2" rowHeight="1.5:1" class="recommendation-grid">
+          <div class="select-child-details-main" *ngFor="let pet of petList">
+            <mat-grid-tile>
+              <mat-card class="example-card">
+                <mat-card-header>
+                  <mat-card-title>{{ pet["name"] }}</mat-card-title>
+                  <mat-card-subtitle>{{ pet["gender"] }}</mat-card-subtitle>
+                </mat-card-header>
+                <mat-card-content
+                  ><div *ngIf="pet['pet_animal_type'] == 'Cat'">
+                    <img src="../../../../assets/img/cat.jpg" alt="" />
+                  </div>
+                  <div *ngIf="pet['pet_animal_type'] == 'Dog'">
+                    <img src="../../../../assets/img/dog.jpg" alt="" />
+                  </div>
+                  <span> Animal Type: {{ pet["pet_animal_type"] }} </span>
+                  <br />
+                  <span> Breed: {{ pet["pet_breed"] }} </span>
+                  <br />
+                  <span> Birthday:{{ pet["birthday"] }} </span>
+                  <br />
+                  <span>
+                    Activities:{{ " " + pet["activity_pref"].join(", ") }}
+                  </span>
+                  <br />
+                  <span> About me:{{ pet["about_me"] }} </span>
+                  <br />
+                  <span>
+                    Emergency Contact:{{ pet["emergency_contact"] }}
+                  </span>
+                </mat-card-content>
+                <mat-card-action>
+                  <div>
+                    <button
+                      mat-raised-button
+                      matStepperNext
+                      (click)="selectPet(pet)"
+                    >
+                      Select
+                    </button>
+                  </div>
+                </mat-card-action>
+              </mat-card></mat-grid-tile
+            >
+          </div>
+        </mat-grid-list>
+      </div>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>Send Request</ng-template>
+      <div class="review-request-main-div">
+        <mat-card class="example-card"
+          >`
+          <mat-card-header>
+            <mat-card-title></mat-card-title>
+            <mat-card-subtitle></mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content>
+            <form [formGroup]="meetingForm">
+              <div class="datePicker" class="add-child-form-element">
+                <mat-form-field>
+                  <input
+                    matInput
+                    [matDatepicker]="picker1"
+                    formControlName="date"
+                    placeholder="Meeting Date"
+                  />
+                  <mat-datepicker-toggle
+                    matIconSuffix
+                    [for]="picker1"
+                  ></mat-datepicker-toggle>
+                  <mat-datepicker #picker1></mat-datepicker>
+                </mat-form-field>
+                <br />
+                <span
+                  style="color: red"
+                  *ngIf="meetingForm.get('date')?.touched && meetingForm.get('date')?.errors?.['required']"
+                >
+                  Date is a required field
+                </span>
+              </div>
+              <div>
+                <mat-form-field>
+                  <mat-label>Time</mat-label>
+                  <input
+                    matInput
+                    placeholder="HH:MM:SS"
+                    value=""
+                    formControlName="time"
+                    name="time"
+                  />
+                </mat-form-field>
+                <br />
+                <span
+                  style="color: red"
+                  *ngIf="meetingForm.get('time') && meetingForm.get('time')?.errors?.['required'] && meetingForm.get('time')?.touched"
+                  >Time is a required feild
+                </span>
+              </div>
+              <div class="add-child-form-element">
+                <mat-form-field appearance="fill">
+                  <mat-label>Location</mat-label>
+                  <mat-select formControlName="location">
+                    <mat-option
+                      *ngFor="let location of topy_locations"
+                      [value]="location.station_id"
+                      >{{ location.station_name }}</mat-option
+                    >
+                  </mat-select>
+                </mat-form-field>
+              </div>
+            </form>
+            Thanks for filling up the form. Come back soon.</mat-card-content
+          >
+          <mat-card-actions
+            ><button mat-raised-button (click)="sendRequest()">
+              Send Request
+            </button></mat-card-actions
+          >
+        </mat-card>
+      </div>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button (click)="stepper.reset()">Reset</button>
+      </div>
+    </mat-step>
+  </mat-stepper>
+</div>

@@ -1,0 +1,94 @@
+mat-stepper {
+  padding-top: 2%;
+  padding-left: 10%;
+  padding-right: 10%;
+}
+
+.edit-information-form {
+  text-align: -webkit-center;
+  justify-content: center;
+  width: fit-content;
+  min-width: 30%;
+  padding-top: 2%;
+  margin-left: 35%;
+  zoom: 90%;
+}
+.mat-stepper-horizontal {
+  margin-top: 8px;
+}
+
+.mat-mdc-form-field {
+  margin-top: 16px;
+}
+table {
+  width: 100%;
+}
+.mat-row .mat-cell {
+  border-bottom: 1px solid transparent;
+  border-top: 1px solid transparent;
+  cursor: pointer;
+}
+
+.mat-row:hover .mat-cell {
+  border-color: currentColor;
+}
+.highlight {
+  background: bisque;
+}
+
+.select-child-details-main {
+  text-align: -webkit-center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+mat-card img {
+  height: 90px;
+  width: 90px;
+}
+
+.add-child-form-element {
+  width: 100%;
+  justify-content: center;
+}
+
+mat-stepper {
+  padding-top: 2%;
+  padding-left: 10%;
+  padding-right: 10%;
+}
+.example-card {
+  min-width: 100px;
+  max-width: 400px;
+  width: 100%;
+}
+
+.all-senior-citizen-table {
+  width: 75%;
+  justify-content: center;
+  padding-top: 2%;
+  padding-left: 10%;
+  padding-right: 10%;
+}
+
+.recommendation-grid {
+  height: max-content;
+}
+.highlight {
+  background: bisque;
+}
+mat-card {
+  height: auto;
+  margin: 1em;
+}
+
+.review-request-main-div {
+  text-align: -webkit-center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.main {
+  zoom: 85%;
+}

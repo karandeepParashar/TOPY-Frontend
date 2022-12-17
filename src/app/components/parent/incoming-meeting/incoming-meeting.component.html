@@ -1,0 +1,101 @@
+<app-parent-header></app-parent-header>
+<mat-grid-list cols="1" rowHeight="2:1" class="recommendation-grid">
+  <div
+    class="select-child-details-main"
+    *ngFor="let request of incomingRequests"
+  >
+    <mat-grid-tile>
+      <mat-card class="example-card">
+        <mat-card-header>
+          <mat-card-title
+            >Meeting Request: {{ request["data"]["match_id"] }}</mat-card-title
+          >
+          <mat-card-subtitle>{{ request["data"]["status"] }}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          <div class="image-requests">
+            <div *ngIf="request['senior_details']['gender'] == 'M'">
+              <img
+                src="../../../../assets/img/old_m.jpg"
+                alt="No Pet and Male"
+              />
+            </div>
+            <div *ngIf="request['senior_details']['gender'] == 'F'">
+              <img
+                src="../../../../assets/img/old_f.jpg"
+                alt="No Pet and Female"
+              />
+            </div>
+          </div>
+
+          <div class="meeting-details">
+            <b>Date: </b> {{ request["data"]["date"] }}
+            <br />
+            <b>Time: </b> {{ request["data"]["time"] }}
+            <br />
+            <b>Location: </b> TOPY Station
+            {{ request["data"]["topy_location"] }}
+          </div>
+          <span
+            ><b>Request for Child </b>
+            {{ request["child_details"]["name"] }}
+          </span>
+          <div
+            *ngIf="request['pet_details'].hasOwnProperty('pet_id')"
+            class="pet-details"
+          >
+            <br />
+            <span
+              ><b> Request for Pet :</b>
+              {{ request["pet_details"]["name"] }}
+            </span>
+          </div>
+          <div class="senior-citizen-details">
+            <br />
+            <b>SENIOR CITIZEN DETAILS</b>
+            <br />
+            <span><b>Name: </b> {{ request["senior_details"]["name"] }}</span>
+            <br />
+            <span
+              ><b>Gender: </b> {{ request["senior_details"]["gender"] }}</span
+            >
+            <br />
+            <span
+              ><b>Birthday: </b>
+              {{ request["senior_details"]["birthday"] }}</span
+            >
+            <br />
+            <span
+              ><b>About Me: </b>
+              {{ request["senior_details"]["about_me"] }}</span
+            >
+            <br />
+            <span
+              ><b>Activities: </b>
+              {{ request["senior_details"]["activity_pref"].join(" ,") }}</span
+            >
+          </div>
+        </mat-card-content>
+        <mat-card-action>
+          <div class="card-buttons">
+            <button
+              mat-raised-button
+              color="primary"
+              (click)="updateMeetingRequest(request, 'Accepted')"
+            >
+              Accept
+            </button>
+            <button
+              mat-raised-button
+              color="warn"
+              (click)="updateMeetingRequest(request, 'Rejected')"
+              style="margin-left: 2em"
+            >
+              Reject
+            </button>
+          </div>
+        </mat-card-action>
+      </mat-card></mat-grid-tile
+    >
+  </div>
+</mat-grid-list>

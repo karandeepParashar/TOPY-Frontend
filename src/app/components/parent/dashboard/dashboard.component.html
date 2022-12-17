@@ -1,0 +1,168 @@
+<app-parent-header></app-parent-header>
+<div class="profile-image">
+  <img src="../../../../assets/img/parent.gif" alt="" />
+</div>
+<br />
+
+<div class="dashbuttons">
+  <h1>Hi {{ user_data["name"] }}</h1>
+  <a
+    mat-raised-button
+    style="margin-right: 16px"
+    color="primary"
+    routerLink="new-meeting"
+  >
+    Set up a new meeting
+  </a>
+  <a
+    mat-raised-button
+    style="margin-right: 16px"
+    color="primary"
+    routerLink="incoming-meeting"
+  >
+    Incoming Requests
+  </a>
+</div>
+
+<div class="current-requests">
+  <h1>Current Requests</h1>
+  <div>
+    <table
+      mat-table
+      [dataSource]="currentMeetingRequests"
+      class="mat-elevation-z8"
+    >
+      <ng-container matColumnDef="Match Id">
+        <th mat-header-cell *matHeaderCellDef>Match Id</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element["data"]["match_id"] }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Status">
+        <th mat-header-cell *matHeaderCellDef>Status</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element["data"]["status"] }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Pet">
+        <th mat-header-cell *matHeaderCellDef>Pet</th>
+        <td mat-cell *matCellDef="let element">{{ element["pet_name"] }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="Child">
+        <th mat-header-cell *matHeaderCellDef>Child</th>
+        <td mat-cell *matCellDef="let element">{{ element["child_name"] }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="SeniorCitizen">
+        <th mat-header-cell *matHeaderCellDef>Senior Citizen</th>
+        <td mat-cell *matCellDef="let element">{{ element["senior_name"] }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="Date">
+        <th mat-header-cell *matHeaderCellDef>Date</th>
+        <td mat-cell *matCellDef="let element">
+          <span class="truncate-cell">
+            {{ element["data"]["date"] }}
+          </span>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Time">
+        <th mat-header-cell *matHeaderCellDef>Time</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element["data"]["time"] }}
+        </td>
+      </ng-container>
+      <div class="table-child">
+        <tr
+          mat-header-row
+          *matHeaderRowDef="displayedColumns; sticky: true"
+        ></tr>
+        <tr
+          mat-row
+          *matRowDef="let row; columns: displayedColumns"
+          class="pending-requests"
+        ></tr>
+      </div>
+    </table>
+  </div>
+</div>
+
+<div class="past-requests">
+  <h1>Past Requests</h1>
+  <div>
+    <table
+      mat-table
+      [dataSource]="pastMeetingRequests"
+      class="mat-elevation-z8"
+    >
+      <!-- Name Column -->
+      <ng-container matColumnDef="Match Id">
+        <th mat-header-cell *matHeaderCellDef>Match Id</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element["data"]["match_id"] }}
+        </td>
+      </ng-container>
+
+      <!-- Location Column -->
+      <ng-container matColumnDef="Status">
+        <th mat-header-cell *matHeaderCellDef>Status</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element["data"]["status"] }}
+        </td>
+      </ng-container>
+
+      <!-- activities Column -->
+      <ng-container matColumnDef="Pet">
+        <th mat-header-cell *matHeaderCellDef>Pet</th>
+        <td mat-cell *matCellDef="let element">{{ element["pet_name"] }}</td>
+      </ng-container>
+
+      <!-- birth_date Column -->
+      <ng-container matColumnDef="Child">
+        <th mat-header-cell *matHeaderCellDef>Child</th>
+        <td mat-cell *matCellDef="let element">{{ element["child_name"] }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="SeniorCitizen">
+        <th mat-header-cell *matHeaderCellDef>Senior Citizen</th>
+        <td mat-cell *matCellDef="let element">{{ element["senior_name"] }}</td>
+      </ng-container>
+
+      <!-- About Me Column -->
+      <ng-container matColumnDef="Date">
+        <th mat-header-cell *matHeaderCellDef>Date</th>
+        <td mat-cell *matCellDef="let element">
+          <span class="truncate-cell">
+            {{ element["data"]["date"] }}
+          </span>
+        </td>
+      </ng-container>
+
+      <!-- emergencyContact Column -->
+      <ng-container matColumnDef="Time">
+        <th mat-header-cell *matHeaderCellDef>Time</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element["data"]["time"] }}
+        </td>
+      </ng-container>
+      <div class="table-child">
+        <tr
+          mat-header-row
+          *matHeaderRowDef="displayedColumns; sticky: true"
+        ></tr>
+        <tr
+          mat-row
+          *matRowDef="let row; columns: displayedColumns"
+          [ngClass]="{
+            'rejected-class': row['data']['status'] == 'Rejected',
+            'accepted-class': row['data']['status'] == 'Accepted'
+          }"
+        ></tr>
+      </div>
+    </table>
+  </div>
+</div>
